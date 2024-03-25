@@ -15,7 +15,7 @@ from gplayapi import GooglePlay_pb2
 from gplayapi.Constant import sc
 from gplayapi.DeviceBuilder import DeviceBuilder
 from gplayapi.Error import SecurityCheckError, LoginError
-from gplayapi.helper import *
+from gplayapi.Helper import *
 
 
 class SSLContext(ssl.SSLContext):

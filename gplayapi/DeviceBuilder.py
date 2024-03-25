@@ -150,23 +150,23 @@ class DeviceBuilder(object):
         return deviceConfig
 
     def get_android_build(self):
-        androidBuild = GooglePlay_pb2.AndroidBuildProto()
-        androidBuild.id = self.device['build.fingerprint']
-        androidBuild.product = self.device['build.hardware']
-        androidBuild.carrier = self.device['build.brand']
-        androidBuild.radio = self.device['build.radio']
-        androidBuild.bootloader = self.device['build.bootloader']
-        androidBuild.device = self.device['build.device']
-        androidBuild.sdkVersion = int(self.device['build.version.sdk_int'])
+        android_build = GooglePlay_pb2.AndroidBuildProto()
+        android_build.id = self.device['build.fingerprint']
+        android_build.product = self.device['build.hardware']
+        android_build.carrier = self.device['build.brand']
+        android_build.radio = self.device['build.radio']
+        android_build.bootloader = self.device['build.bootloader']
+        android_build.device = self.device['build.device']
+        android_build.sdkVersion = int(self.device['build.version.sdk_int'])
         # androidBuild.sdkVersion = int('33')
-        androidBuild.model = self.device['build.model']
-        androidBuild.manufacturer = self.device['build.manufacturer']
-        androidBuild.buildProduct = self.device['build.product']
-        androidBuild.client = self.device['client']
-        androidBuild.otaInstalled = False
-        androidBuild.timestamp = int(time() / 1000)
-        androidBuild.googleServices = int(self.device['gsf.version'])
-        return androidBuild
+        android_build.model = self.device['build.model']
+        android_build.manufacturer = self.device['build.manufacturer']
+        android_build.buildProduct = self.device['build.product']
+        android_build.client = self.device['client']
+        android_build.otaInstalled = False
+        android_build.timestamp = int(time() / 1000)
+        android_build.googleServices = int(self.device['gsf.version'])
+        return android_build
 
     def get_android_checkin(self):
         androidCheckin = GooglePlay_pb2.AndroidCheckinProto()
