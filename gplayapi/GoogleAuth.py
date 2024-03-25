@@ -269,7 +269,7 @@ class GoogleAuthAPI:
         else:
             headers = self.device_builder.get_base_headers()
         if self.gsfId is not None:
-            headers["X-DFE-Device-Id"] = "{0:x}".format(self.gsfId)
+            headers["X-DFE-Device-Id"] = "{:x}".format(self.gsfId)
         if self.auth_sub_token is not None:
             headers["Authorization"] = "GoogleLogin auth=%s" % self.auth_sub_token
         if self.device_config_token is not None:
