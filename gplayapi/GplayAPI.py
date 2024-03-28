@@ -105,7 +105,33 @@ class GplayAPI:
         res_iterator = response.payload.listResponse.doc
         return list(map(parse_protobuf_obj, res_iterator))
 
-    def list_ranks(self, ctr, cat=None, next_page_url=None):
+    def list_rank_old(self, ctr, cat=None, next_page_url=None):
+
+        if next_page_url:
+            path = sc.FDFE + next_page_url
+            path += "&stcid={}".format(requote_uri(ctr))
+        else:
+            # path = sc.LIST_TEST_URL + "?c=3&n=7"
+            path = sc.LEGACY_LIST_URL + "?c=3"
+            path += "&stcid={}".format(requote_uri(ctr))
+            if cat is not None:
+                path += "&scat={}".format(requote_uri(cat))
+
+        data = self.__execute_request_api__(path)
+        apps = []
+        for d in data.payload.listResponse.doc:  # categories
+            for c in d.child:  # sub-category
+                for a in c.child:  # app
+                    apps.append(parse_protobuf_obj(a))
+        try:
+            # Sometimes we get transient very short response which indicates there's no more data
+            next_page_url = data.payload.listResponse.doc[0].child[0].containerMetadata.nextPageUrl
+        except Exception:
+            return apps, ""
+
+        return apps, next_page_url
+
+    def list_ranks(self, ctr, cat=None, next_page_url=None, fetch_new_apps=False):
         """
         List top ranks for the given category and rank list.
         Args:
@@ -124,6 +150,8 @@ class GplayAPI:
             path += "&stcid={}".format(requote_uri(ctr))
             if cat is not None:
                 path += "&scat={}".format(requote_uri(cat))
+            if fetch_new_apps:
+                path += '&stcreltype=1'
 
         data = self.__execute_request_api__(path)
         apps = []

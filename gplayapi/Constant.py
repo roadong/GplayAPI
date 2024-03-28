@@ -28,6 +28,7 @@ sc.SEARCH_URL = sc.FDFE + "search"
 sc.UPLOAD_URL = sc.FDFE + "uploadDeviceConfig"
 sc.TOC_URL = sc.FDFE + "toc"
 sc.ACCEPT_TOS_URL = sc.FDFE + "acceptTos"
+sc.LEGACY_LIST_URL = sc.FDFE + "list"
 sc.LIST_TEST_URL = sc.PLAYSTORE_FDFE + "listTopChartItems"
 sc.LIST_TEST_V2_URL = sc.PLAYSTORE_FDFE + "browseTopCharts"
 sc.CONTENT_TYPE_URLENC = "application/x-www-form-urlencoded; charset=UTF-8"
@@ -40,6 +41,8 @@ ctr = space_constants()
 ctr.APPS_TOP_SELLING_PAID = "apps_topselling_paid"
 ctr.APPS_TOP_SELLING_FREE = "apps_topselling_free"
 ctr.APPS_TOP_GROSSING = "apps_topgrossing"
+ctr.APPS_TOP_SELLING_NEW_PAID = "apps_topselling_new_paid"
+ctr.APPS_TOP_SELLING_NEW_FREE = "apps_topselling_new_free"
 ctr.APPS_TRENDING = "apps_movers_shakers"
 
 cat = space_constants()
